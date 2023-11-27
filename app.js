@@ -2,7 +2,7 @@ const express = require('express');
 const createError = require('http-errors');
 const morgan = require('morgan');
 require('dotenv').config();
-
+const test = require('./routes/api.route')
 const app = express();
 const JWT = require('jsonwebtoken');
 const fs = require('fs');
@@ -17,7 +17,7 @@ const secret = fs.readFileSync('./certs/private.pem')
   res.send({  token });
 });
 
-app.use('/api', require('./routes/api.route'));
+app.use('/api', test);
 
 app.use((req, res, next) => {
   next(createError.NotFound());
